@@ -1,0 +1,618 @@
+
+
+
+
+     
+     
+     
+     
+     <!doctype html>
+<html>
+    
+<script>
+    
+    var couleurs_lignes = ["pastel","red","blue","green","orange","pink","black","white","grey"];
+    
+    function cherche_parametre(parametre){
+
+    var i = 0;
+    
+    while(i<myParamTranform.length && myParamTranform[i][0] != parametre){
+        i++;}
+    
+   return(i);
+    
+}
+    
+    //gestion des parametres de GET
+    
+        var myParam = location.search.split("&");
+        myParam[0] = myParam[0].replace("?","");
+        
+        myParamTranform = new Array;
+        myParam.forEach(function(element) {
+            myParamTranform.push(element.split("="));   
+        });
+    
+    
+    //gestion des parametres par defaut
+
+    //gestion du spawn
+    if(cherche_parametre("Spawn") == myParamTranform.lenght){
+            if(
+                (myParamTranform[cherche_parametre("Spawn")][1] != 1) &&
+                (myParamTranform[cherche_parametre("Spawn")][1] != 2) &&
+                (myParamTranform[cherche_parametre("Spawn")][1] != 3)
+              ){
+                    myParamTranform[cherche_parametre("Spawn")][1] = 2;
+               }
+        
+        
+    }
+    else{
+        
+        myParamTranform.push(["Spawn",2]);     
+    }
+    
+    //gestion number_max
+    if(cherche_parametre("number_max") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("number_max")][1])){
+            myParamTranform[cherche_parametre("number_max")][1] = 2;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["number_max",2]);     
+        
+    }
+    
+    //gestion frame_per_sec
+    if(cherche_parametre("frame_per_sec") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("frame_per_sec")][1])){
+            myParamTranform[cherche_parametre("frame_per_sec")][1] = 200;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["frame_per_sec",200]);     
+        
+    }
+    
+    //gestion frame_draw
+    if(cherche_parametre("frame_draw") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("frame_draw")][1])){
+            myParamTranform[cherche_parametre("frame_draw")][1] = 3000;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["frame_draw",3000]);     
+        
+    }
+    
+    //gestion line_color
+    if(cherche_parametre("line_color") == myParamTranform.lenght){
+        
+            var k = 0;
+            while (k<couleurs_lignes.length && couleurs_lignes[k] != myParamTranform[cherche_parametre("line_color")][1]) {
+               k++;
+            }
+        
+            if(k>=couleurs_lignes.length){
+                myParamTranform[cherche_parametre("line_color")][1] = "white";
+            }
+        
+
+        
+    }
+    else{
+        myParamTranform.push(["line_color","white"]);
+    }
+    
+    //gestion background_color
+    if(cherche_parametre("background_color") == myParamTranform.lenght){
+
+        
+    }
+    else{
+        myParamTranform.push(["background_color","%23000000"]);
+    }
+    
+    
+    
+    //gestion thickness
+    if(cherche_parametre("thickness") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("thickness")][1])){
+            myParamTranform[cherche_parametre("thickness")][1] = 3;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["thickness",3]);     
+        
+    }
+    
+    //gestion infinit
+    if(cherche_parametre("infinit") == myParamTranform.lenght){
+            if(
+                (myParamTranform[cherche_parametre("infinit")][1] != "true") &&
+                (myParamTranform[cherche_parametre("infinit")][1] != "false")
+              ){
+                    myParamTranform[cherche_parametre("infinit")][1] = false;
+               }
+        
+        
+    }
+    else{
+        
+        myParamTranform.push(["infinit",false]);     
+    }
+    
+    //gestion number_min_power
+    if(cherche_parametre("number_min_power") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("number_min_power")][1])){
+            myParamTranform[cherche_parametre("number_min_power")][1] = 10;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["number_min_power",10]);     
+        
+    }
+    
+    //gestion number_max_power
+    if(cherche_parametre("number_max_power") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("number_max_power")][1])){
+            myParamTranform[cherche_parametre("number_max_power")][1] = 120;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["number_max_power",120]);     
+        
+    }
+    
+    
+    
+    //gestion slider_depha_range
+    if(cherche_parametre("slider_depha_range") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_depha_range")][1])){
+            myParamTranform[cherche_parametre("slider_depha_range")][1] = 130;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_depha_range",130]);     
+        
+    }
+    
+    //gestion slider_depha_range1
+    if(cherche_parametre("slider_depha_range1") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_depha_range1")][1])){
+            myParamTranform[cherche_parametre("slider_depha_range1")][1] = 160;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_depha_range1",160]);     
+        
+    }
+    
+    
+    //gestion slider_Random_Friction
+    if(cherche_parametre("slider_Random_Friction") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Random_Friction")][1])){
+            myParamTranform[cherche_parametre("slider_Random_Friction")][1] = 0.00001;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Random_Friction",0.00001]);     
+        
+    }
+
+    //gestion slider_Random_Friction1
+    if(cherche_parametre("slider_Random_Friction1") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Random_Friction1")][1])){
+            myParamTranform[cherche_parametre("slider_Random_Friction1")][1] = 0.001;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Random_Friction1",0.001]);     
+        
+    }
+    
+    
+    //gestion slider_Power_range
+    if(cherche_parametre("slider_Power_range") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Power_range")][1])){
+            myParamTranform[cherche_parametre("slider_Power_range")][1] = 70;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Power_range",70]);     
+        
+    }
+
+    //gestion slider_Power_range1
+    if(cherche_parametre("slider_Power_range1") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Power_range1")][1])){
+            myParamTranform[cherche_parametre("slider_Power_range1")][1] = 110;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Power_range1",110]);     
+        
+    }
+    
+    
+    //gestion slider_Pulse_range
+    if(cherche_parametre("slider_Pulse_range") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Pulse_range")][1])){
+            myParamTranform[cherche_parametre("slider_Pulse_range")][1] = 190;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Pulse_range",190]);     
+        
+    }
+    
+    
+    //gestion slider_Pulse_range1
+    if(cherche_parametre("slider_Pulse_range1") == myParamTranform.lenght){
+        if(Number.isInteger(myParamTranform[cherche_parametre("slider_Pulse_range1")][1])){
+            myParamTranform[cherche_parametre("slider_Pulse_range1")][1] = 230;
+        }
+        
+        
+    }
+    else{
+        
+         myParamTranform.push(["slider_Pulse_range1",230]);     
+        
+    }
+
+    
+    
+    
+    
+    
+    
+ 
+</script>
+    
+<script>//creation des parametres par defaut si il n'existe pas
+    
+
+    
+    var spawn = cherche_parametre("Spawn");
+    if (!(spawn!=myParamTranform.length && (myParamTranform[spawn] == "1" || myParamTranform[spawn] == "2" || myParamTranform[spawn] == "3" ))){
+         myParamTranform.push(["Spawn","2"]);
+    }
+    
+</script>
+    
+<head>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap-slider-master/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap-slider-master/dist/bootstrap-slider.min.js"></script>
+    
+    <title>harmonographe</title>   
+</head>
+<body >
+    
+    <canvas id="myCanvas"  ></canvas>
+    <script src="app.js"></script>
+    
+    
+    
+
+    
+    
+    <hr color="black" style = "margin-top: 0px;">
+    
+    
+    
+    
+    
+    
+    <script>   console.log(myParamTranform);     </script>
+    
+    
+    
+    
+ 
+   
+    
+    
+<form style=" max-width: 60%; padding: 30px" action="" method="GET">
+        
+    <p class="h2">Settings</p>
+     
+    <div class="form-group" >
+            <div class="form-inline">
+            <label class="control-label">Spawn: </label>
+            <label class="radio">
+                <input type="radio" name="Spawn" value="1" id="Spawn1" />
+                click mouse
+            </label>
+            <label class="radio">
+                <input type="radio" name="Spawn" value="2"  id="Spawn2" />
+                random
+             </label>
+            <label class="radio">
+                <input type="radio" name="Spawn" value="3" id="Spawn3"/>
+                center
+             </label>
+        </div> 
+
+
+        <script>
+            var svg = myParamTranform[cherche_parametre("Spawn")][1];
+            if(svg == "1"){document.getElementById("Spawn1").checked = true;}
+            else if(svg == "2"){document.getElementById("Spawn2").checked = true;}
+            else if(svg == "3"){document.getElementById("Spawn3").checked = true;}
+        </script> 
+
+    </div>     <!-- Spawn Point -->         
+    <div>
+            <label>Number max of harmonographe: </label>
+            <input type="number" class="form-control"   id="number_max" name="number_max">
+
+            <script>
+                document.getElementById("number_max").value = myParamTranform[cherche_parametre("number_max")][1];; 
+            </script>
+
+    </div>                                  <!-- Number Harmonographe -->
+    <div>
+            <label>Frame per second: </label>
+            <input type="number" class="form-control"  value="300" id="frame_per_sec" name="frame_per_sec">
+
+            <script>
+                document.getElementById("frame_per_sec").value = myParamTranform[cherche_parametre("frame_per_sec")][1]; 
+            </script>
+    </div>                         <!-- Frame Per Second -->
+    <div>
+            <label>Number of line draw per frame: </label>
+            <input type="number" class="form-control"  value="1000" id="frame_draw" name="frame_draw">
+
+            <script>
+                document.getElementById("frame_draw").value = myParamTranform[cherche_parametre("frame_draw")][1];; 
+            </script>
+
+    </div>                         <!-- Frame Draw -->
+    <div class="form-group">
+        <label> Line color: </label>
+        <select class="form-control" id="line_color" name="line_color">
+
+            <script>
+                    
+
+                    couleurs_lignes.forEach(function(element) {
+                         document.write("<option");
+                        if(myParamTranform[cherche_parametre("line_color")][1] == element){
+                            document.write(' selected="selected"');
+                        }
+
+                        document.write(">"+element);
+
+                        document.write("</option>");
+                    });
+
+            </script>
+
+        </select>
+
+
+
+    </div>      <!-- Line Color --> 
+    <div class="form-group">
+            <label>Line thickness: </label>
+            <input type="number" class="form-control"  value="1" id="thickness" name="thickness">
+
+                <script>
+                document.getElementById("thickness").value = myParamTranform[cherche_parametre("thickness")][1];
+                </script>
+    </div>      <!-- Line Thickness -->
+    <div class="form-group">
+        <label> Background color: </label>
+       <input type="color" name="background_color" id="background_color">
+
+                    <script>
+
+                        var a = myParamTranform[cherche_parametre("background_color")][1];
+                        console.log(a);
+                        a = a.substr(3);
+                        document.getElementById("background_color").value = "#" + a; 
+
+
+
+
+                </script>
+
+    </div>      <!-- Background Color -->   
+    <br>    
+    <div class="form-group">
+         <div class="form-inline">
+                    <label  class="control-label">Friction range: </label>
+                    <b style="margin-right: 7px;">0</b> 
+
+             <script>
+
+             document.write('<input id="Random_Friction" type="number" class="span2" value="" data-slider-min="0" data-slider-max="0.001" data-slider-step="0.00001" data-slider-value="['+myParamTranform[cherche_parametre("slider_Random_Friction")][1]+','+myParamTranform[cherche_parametre("slider_Random_Friction1")][1]+']"  /> <b style="margin-left: 7px;">0.001</b>');
+
+             </script>
+
+            <script>  slider_Random_Friction = new Slider('#Random_Friction', {});</script>
+
+        </div>
+    </div>      <!-- Slider Friction -->
+    <br>
+    <div class="form-group"> 
+         <div class="form-inline">
+                    <label  class="control-label">Power range: </label>
+                    <b style="margin-right: 7px;">0</b> 
+
+                    <script>
+
+                        document.write(' <input id="Power_range" type="number" class="span2" value="" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="['+myParamTranform[cherche_parametre("slider_Power_range")][1]+','+myParamTranform[cherche_parametre("slider_Power_range1")][1]+']"  /> <b style="margin-left: 7px;">200</b>');
+
+                    </script>
+
+                    <script>  slider_Power_range = new Slider('#Power_range', {});</script>
+        </div>
+    </div>      <!-- Slider Power -->
+    <br> 
+    <div class="form-group"> 
+         <div class="form-inline">
+                    <label  class="control-label">Pulse range: </label>
+                    <b style="margin-right: 7px;">0</b> 
+
+                    <script>
+
+                        document.write('<input id="Pulse_range" type="number" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="['+myParamTranform[cherche_parametre("slider_Pulse_range")][1]+','+myParamTranform[cherche_parametre("slider_Pulse_range1")][1]+']"  /> <b style="margin-left: 7px;">360</b>');
+
+                    </script>       
+
+                    <script> slider_Pulse_range = new Slider('#Pulse_range', {});</script>
+        </div>
+    </div>      <!-- Slider Pulse -->
+    <br> 
+    <div class="form-group">
+     <div class="form-inline">
+                <label  class="control-label">Dephasing range: </label>
+                <b style="margin-right: 7px;">0</b> 
+         
+                <script>
+                    
+                    document.write('<input id="Dephasing_range" type="number" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="['+myParamTranform[cherche_parametre("slider_depha_range")][1]+','+myParamTranform[cherche_parametre("slider_depha_range1")][1]+']"  /> <b style="margin-left: 7px;">360</b>');
+         
+                </script> 
+         
+                <script> slider_Dephasing_range = new Slider('#Dephasing_range', {});</script>
+    </div>
+</div>      <!-- Slider Dephasing -->
+    <br> 
+    <div class="form-group">
+        <div class="form-inline">
+        <label class="control-label">Infinit harmonographe: </label>
+        <label class="radio">
+            <input type="radio" name="infinit" value="true" id="infinit_true"/>
+            true
+        </label>
+        <label class="radio">
+            <input type="radio" name="infinit" value="false" id="infinit_false"/>
+            false
+         </label>
+            
+        <script>
+            if(myParamTranform[cherche_parametre("infinit")][1] == "true"){
+                document.getElementById("infinit_true").checked = true;
+            }
+            else{
+                document.getElementById("infinit_false").checked = true;
+            }
+
+        </script> 
+            
+    </div>  
+    </div>      <!-- Infinit Power -->        
+    <div>
+        <label>Minimum power: </label>
+        <input type="number" class="form-control"  value="1" id="number_min_power" name="number_min_power">
+    
+        <script>
+            document.getElementById("number_min_power").value = myParamTranform[cherche_parametre("number_min_power")][1];
+        </script>
+</div>                         <!-- Min Power -->
+    <div>
+        <label>Maximum power: </label>
+        <input type="number" class="form-control"  value="300" id="number_max_power" name="number_max_power">
+        
+        <script>
+            document.getElementById("number_max_power").value = myParamTranform[cherche_parametre("number_max_power")][1];
+        </script>
+    
+</div>                         <!-- Max Power -->
+    <div>
+            <input name ="slider_Random_Friction" value = "" id="id_slider_friction" style="display:none">
+        <input name ="slider_Random_Friction1" value = "" id="id_slider_friction1" style="display:none">
+        
+        <input name ="slider_Power_range" value = "" id="slider_Power_range" style="display:none">
+        <input name ="slider_Power_range1" value = "" id="slider_Power_range1" style="display:none">
+        
+        <input name ="slider_Pulse_range" value = "" id="slider_Pulse_range" style="display:none">
+        <input name ="slider_Pulse_range1" value = "" id="slider_Pulse_range1" style="display:none">
+        
+        <input name ="slider_depha_range" value = "" id="slider_depha_range" style="display:none">
+        <input name ="slider_depha_range1" value = "" id="slider_depha_range1" style="display:none">
+    
+    </div>                         <!-- Gestion des informations des slider pour envoie dans formulaire-->
+    <br>  
+    <div>
+    <script>
+                
+    function ajout_slider(){
+                
+        document.getElementById("id_slider_friction").value = slider_Random_Friction.$element.context.defaultValue.split(',')[0];
+        document.getElementById("id_slider_friction1").value = slider_Random_Friction.$element.context.defaultValue.split(',')[1];
+                
+        document.getElementById("slider_Power_range").value = slider_Power_range.$element.context.defaultValue.split(',')[0];
+        document.getElementById("slider_Power_range1").value = slider_Power_range.$element.context.defaultValue.split(',')[1];
+                    
+        document.getElementById("slider_Pulse_range").value = slider_Pulse_range.$element.context.defaultValue.split(',')[0];
+        document.getElementById("slider_Pulse_range1").value = slider_Pulse_range.$element.context.defaultValue.split(',')[1];        
+        document.getElementById("slider_depha_range").value = slider_Dephasing_range.$element.context.defaultValue.split(',')[0];
+        document.getElementById("slider_depha_range1").value = slider_Dephasing_range.$element.context.defaultValue.split(',')[1];
+                
+                
+    }       //ajout des valeurs des sliders
+        
+</script>
+        
+        
+        
+        <button type="submit" class="btn btn-primary" onclick="ajout_slider()">Submit</button>
+    
+
+</div>                         <!-- Met les informations des slider dans le formulaire quand on click sur le bouton -->
+        
+</form>
+</body>
+</html>
+
+
+     
